@@ -4,9 +4,391 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    
+      <!-- Header -->
+    <header>
+        <body>
+        <nav>
+            <a href="#" class="logo">🏥 MedCare</a>
+            <ul class="nav-links">
+                <li><a href="#home">Bosh sahifa</a></li>
+                <li><a href="#services">Xizmatlar</a></li>
+                <li><a href="#contact">Bog'lanish</a></li>
+                <li><a href="#" id="adminBtn">Admin Panel</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main id="mainContent">
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <h1>Sog'ligingiz - Bizning Ustuvor Vazifamiz</h1>
+                <p>Zamonaviy tibbiyot xizmatlari va professional shifokorlar bilan</p>
+                <a href="#services" class="cta-button">Xizmatlarimiz bilan tanishing</a>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="services">
+            <h2 class="section-title">Bizning Xizmatlarimiz</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🩺</div>
+                    <h3>Umumiy Tibbiyot</h3>
+                    <p>Malakali shifokorlar tomonidan to'liq tibbiy ko'rik va davolash</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🦷</div>
+                    <h3>Stomatologiya</h3>
+                    <p>Zamonaviy uskunalar bilan tishlaringizni davolash va parvarish qilish</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">👁️</div>
+                    <h3>Oftalmologiya</h3>
+                    <p>Ko'z kasalliklarini tashxislash va davolash</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🩻</div>
+                    <h3>Diagnostika</h3>
+                    <p>Zamonaviy diagnostika usullari bilan aniq tashxis</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">💊</div>
+                    <h3>Farmatsiya</h3>
+                    <p>Sifatli dorilar va malakali maslahatlar</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🏥</div>
+                    <h3>Statsionar</h3>
+                    <p>Qulay palatalar va doimiy tibbiy nazorat</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact">
+            <div class="contact-container">
+                <div class="contact-form">
+                    <h2>Bog'laning</h2>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Ismingiz:</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Telefon:</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Xabar:</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Yuborish</button>
+                    </form>
+                </div>
+                <div class="map-container">
+                    <h2>Bizning Manzilimiz</h2>
+                    <div id="map"></div>
+                    <p style="margin-top: 1rem; text-align: center;">
+                        📍 Toshkent, Amir Temur ko'chasi, 25-uy<br>
+                        📞 +998 90 123 45 67<br>
+                        ✉️ info@medcare.uz
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Admin Panel -->
+    <div id="adminPanel" class="admin-panel">
+        <div class="admin-content">
+            <div class="admin-header">
+                <h1>🔐 Admin Panel</h1>
+                <p>Mijozlar ma'lumotlari va sayt boshqaruvi</p>
+                <div class="admin-nav">
+                    <a href="#" onclick="showMainContent()" class="admin-nav-btn">🏠 Bosh sahifa</a>
+                    <a href="#" onclick="showServices()" class="admin-nav-btn">🩺 Xizmatlar</a>
+                    <a href="#" onclick="showContact()" class="admin-nav-btn">📞 Bog'lanish</a>
+                </div>
+                <div class="admin-actions">
+                    <button onclick="clearAllClients()" class="clear-all-btn">🗑️ Hammasini tozalash</button>
+                    <button onclick="logoutAdmin()" class="logout-btn">🚪 Chiqish</button>
+                </div>
+            </div>
+            
+            <div class="stats-container">
+                <div class="stat-card">
+                    <div class="stat-number" id="totalClients">0</div>
+                    <div class="stat-label">Jami mijozlar</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="todayClients">0</div>
+                    <div class="stat-label">Bugungi mijozlar</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="weekClients">0</div>
+                    <div class="stat-label">Haftalik mijozlar</div>
+                </div>
+            </div>
+            
+            <div class="client-list">
+                <h2>📋 Mijozlar Ro'yxati</h2>
+                <div id="clientsList"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="login-modal">
+        <div class="login-form">
+            <span class="close-btn" onclick="closeLoginModal()">&times;</span>
+            <h2>Admin Kirish</h2>
+            <input type="password" id="adminPassword" placeholder="Parolni kiriting">
+            <button onclick="loginAdmin()" class="login-btn">Kirish</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 MedCare. Barcha huquqlar himoyalangan.</p>
+    </footer>
+
+    <script>
+        // Client data storage
+        let clients = [];
+
+        // Admin credentials
+        const ADMIN_PASSWORD = '885';
+
+        // Initialize map
+        function initMap() {
+            const tashkent = { lat: 41.2995, lng: 69.2401 };
+            const map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 15,
+                center: tashkent,
+                styles: [
+                    {
+                        "featureType": "all",
+                        "elementType": "geometry.fill",
+                        "stylers": [{"weight": "2.00"}]
+                    },
+                    {
+                        "featureType": "all",
+                        "elementType": "geometry.stroke",
+                        "stylers": [{"color": "#9c9c9c"}]
+                    }
+                ]
+            });
+
+            const marker = new google.maps.Marker({
+                position: tashkent,
+                map: map,
+                title: 'MedCare Klinikasi',
+                animation: google.maps.Animation.BOUNCE
+            });
+
+            const infoWindow = new google.maps.InfoWindow({
+                content: '<div style="padding: 10px;"><h3>MedCare Klinikasi</h3><p>Toshkent, Amir Temur ko\'chasi, 25-uy</p><p>📞 +998 90 123 45 67</p></div>'
+            });
+
+            marker.addListener('click', () => {
+                infoWindow.open(map, marker);
+            });
+        }
+
+        // Contact form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = {
+                name: document.getElementById('name').value,
+                phone: document.getElementById('phone').value,
+                email: document.getElementById('email').value,
+                message: document.getElementById('message').value,
+                timestamp: new Date().toLocaleString('uz-UZ')
+            };
+
+            clients.push(formData);
+            
+            // Show success message
+            alert('Xabaringiz muvaffaqiyatli yuborildi! Tez orada siz bilan bog\'lanamiz.');
+            
+            // Reset form
+            this.reset();
+            
+            console.log('New client added:', formData);
+        });
+
+        // Admin functions
+        function openLoginModal() {
+            document.getElementById('loginModal').style.display = 'flex';
+        }
+
+        function closeLoginModal() {
+            document.getElementById('loginModal').style.display = 'none';
+            document.getElementById('adminPassword').value = '';
+        }
+
+        function loginAdmin() {
+            const password = document.getElementById('adminPassword').value;
+            if (password === ADMIN_PASSWORD) {
+                document.getElementById('mainContent').style.display = 'none';
+                document.getElementById('adminPanel').style.display = 'block';
+                closeLoginModal();
+                displayClients();
+                updateStats();
+            } else {
+                alert('Noto\'g\'ri parol!');
+            }
+        }
+
+        function logoutAdmin() {
+            document.getElementById('adminPanel').style.display = 'none';
+            document.getElementById('mainContent').style.display = 'block';
+        }
+
+        function showMainContent() {
+            document.getElementById('adminPanel').style.display = 'none';
+            document.getElementById('mainContent').style.display = 'block';
+            document.getElementById('home').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function showServices() {
+            document.getElementById('adminPanel').style.display = 'none';
+            document.getElementById('mainContent').style.display = 'block';
+            document.getElementById('services').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function showContact() {
+            document.getElementById('adminPanel').style.display = 'none';
+            document.getElementById('mainContent').style.display = 'block';
+            document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function deleteClient(index) {
+            if (confirm('Haqiqatan ham bu mijoz ma\'lumotini o\'chirmoqchimisiz?')) {
+                clients.splice(index, 1);
+                displayClients();
+                updateStats();
+            }
+        }
+
+        function clearAllClients() {
+            if (confirm('Haqiqatan ham barcha mijozlar ma\'lumotini o\'chirmoqchimisiz?')) {
+                clients = [];
+                displayClients();
+                updateStats();
+            }
+        }
+
+        function updateStats() {
+            const today = new Date().toLocaleDateString('uz-UZ');
+            const weekAgo = new Date();
+            weekAgo.setDate(weekAgo.getDate() - 7);
+            
+            const todayClients = clients.filter(client => {
+                const clientDate = new Date(client.timestamp.split(',')[0]);
+                return clientDate.toLocaleDateString('uz-UZ') === today;
+            }).length;
+            
+            const weekClients = clients.filter(client => {
+                const clientDate = new Date(client.timestamp.split(',')[0]);
+                return clientDate >= weekAgo;
+            }).length;
+            
+            document.getElementById('totalClients').textContent = clients.length;
+            document.getElementById('todayClients').textContent = todayClients;
+            document.getElementById('weekClients').textContent = weekClients;
+        }
+
+        function displayClients() {
+            const clientsList = document.getElementById('clientsList');
+            
+            if (clients.length === 0) {
+                clientsList.innerHTML = '<div style="text-align: center; padding: 3rem; color: #666; font-size: 1.2rem;">📭 Hozircha mijozlar ma\'lumotlari yo\'q</div>';
+                return;
+            }
+
+            clientsList.innerHTML = clients.map((client, index) => `
+                <div class="client-item">
+                    <div class="client-header">
+                        <div class="client-name">
+                            👤 ${client.name}
+                        </div>
+                        <button class="delete-btn" onclick="deleteClient(${index})" title="O'chirish">
+                            🗑️
+                        </button>
+                    </div>
+                    <div class="client-details">
+                        <p><strong>📞 Telefon:</strong> ${client.phone}</p>
+                        <p><strong>✉️ Email:</strong> ${client.email}</p>
+                        <p><strong>💬 Xabar:</strong> ${client.message}</p>
+                        <p><strong>🕐 Sana:</strong> ${client.timestamp}</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Event listeners
+        document.getElementById('adminBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            openLoginModal();
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Service cards hover effects
+        document.querySelectorAll('.service-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+                this.style.color = 'white';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.background = 'white';
+                this.style.color = '#333';
+            });
+        });
+
+        // Header background change on scroll
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(102, 126, 234, 0.95)';
+                header.style.backdropFilter = 'blur(10px)';
+            } else {
+                header.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+                header.style.backdropFilter = 'none';
+            }
+        });
+
+        // Initialize Google Maps when page loads
+        window.onload = function() {
+            if (typeof google !== 'undefined') {
+                initMap();
+            }
+        };
+    </script>
+
+    <!-- Google Maps API -->
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"></script>
 </head>
-<body>
-    <h1>IT park</h1>
+
 </body>
 </html>
