@@ -1,9 +1,12 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="uz">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MedCare - Zamonaviy Tibbiyot Markazi</title>
+    <title>Portfolio - Frontend Developer</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -12,69 +15,63 @@
         }
 
         body {
-            font-family: 'Arial', sans-serif;
-            line-height: 1.6;
-            color: #333;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0a0a0a;
+            color: #fff;
             overflow-x: hidden;
         }
 
-        /* Header */
-        header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        /* Navbar */
+        .navbar {
+            background: rgba(10, 10, 10, 0.95) !important;
+            backdrop-filter: blur(10px);
             padding: 1rem 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 20px rgba(99, 102, 241, 0.3);
         }
 
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .logo {
+        .navbar-brand {
             font-size: 1.8rem;
-            font-weight: bold;
-            color: white;
-            text-decoration: none;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-            align-items: center;
+        .nav-link {
+            color: #cbd5e1 !important;
+            font-weight: 500;
+            margin: 0 20px;
+            transition: all 0.3s;
+            position: relative;
         }
 
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
+        .nav-link:hover {
+            color: #667eea !important;
         }
 
-        .nav-links a:hover {
-            background: rgba(255,255,255,0.2);
-            transform: translateY(-2px);
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #667eea;
+            transition: width 0.3s;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
         }
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
             position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
         }
 
         .hero::before {
@@ -84,882 +81,713 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" fill="white" opacity="0.1"><path d="M0,60 C150,120 350,0 500,60 C650,120 850,0 1000,60 L1000,100 L0,100 Z"></path></svg>');
-            animation: wave 3s ease-in-out infinite;
+            background: url('lc200.jpg') center/cover no-repeat;
+            opacity: 0.15;
+            z-index: 0;
         }
 
-        @keyframes wave {
-            0%, 100% { transform: translateX(0); }
-            50% { transform: translateX(-20px); }
-        }
-
-        .hero-content h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            animation: fadeInUp 1s ease-out;
-        }
-
-        .hero-content p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            animation: fadeInUp 1s ease-out 0.3s both;
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: 1rem 2rem;
-            background: white;
-            color: #667eea;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            animation: fadeInUp 1s ease-out 0.6s both;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Services Section */
-        .services {
-            padding: 5rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            color: #333;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .service-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            text-align: center;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px) scale(1.05);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
-        }
-
-        .service-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            color: #667eea;
-        }
-
-        /* Contact Section */
-        .contact {
-            background: #f8f9fa;
-            padding: 5rem 2rem;
-        }
-
-        .contact-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-        }
-
-        .contact-form {
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: bold;
-            color: #333;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 1rem;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 10px rgba(102, 126, 234, 0.3);
-        }
-
-        .submit-btn {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 1rem 2rem;
-            border: none;
-            border-radius: 50px;
-            font-size: 1rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            width: 100%;
-        }
-
-        .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-        }
-
-        /* Map Section */
-        .map-container {
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-        }
-
-        #map {
-            width: 100%;
-            height: 400px;
-            border-radius: 10px;
-        }
-
-        /* Admin Panel */
-        .admin-panel {
-            display: none;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding-top: 90px;
-        }
-
-        .admin-header {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 2rem;
-            margin: 2rem;
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            text-align: center;
-            border: 1px solid rgba(255,255,255,0.2);
-        }
-
-        .admin-header h1 {
-            color: #667eea;
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .admin-header p {
-            color: #666;
-            font-size: 1.1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .admin-nav {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-bottom: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .admin-nav-btn {
-            padding: 0.75rem 1.5rem;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            border-radius: 25px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .admin-nav-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-        }
-
-        .admin-actions {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .logout-btn {
-            padding: 0.75rem 1.5rem;
-            background: #ff6b6b;
-            color: white;
-            border: none;
-            border-radius: 25px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: all 0.3s ease;
-        }
-
-        .logout-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(255,107,107,0.3);
-        }
-
-        .clear-all-btn {
-            padding: 0.75rem 1.5rem;
-            background: #ffa726;
-            color: white;
-            border: none;
-            border-radius: 25px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: all 0.3s ease;
-        }
-
-        .clear-all-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(255,167,38,0.3);
-        }
-
-        .admin-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .client-list {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 2.5rem;
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            border: 1px solid rgba(255,255,255,0.2);
-        }
-
-        .client-list h2 {
-            color: #667eea;
-            text-align: center;
-            margin-bottom: 2rem;
-            font-size: 2rem;
-        }
-
-        .client-item {
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            padding: 2rem;
-            margin-bottom: 1.5rem;
-            border-radius: 15px;
-            border-left: 5px solid #667eea;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .client-item::before {
+        .hero::after {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
-            transform: translateX(-100%);
-            transition: transform 0.3s ease;
+            background: radial-gradient(circle at 20% 50%, rgba(102, 126, 234, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(118, 75, 162, 0.2) 0%, transparent 50%);
+            z-index: 1;
         }
 
-        .client-item:hover::before {
-            transform: translateX(0);
-        }
-
-        .client-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
-            border-left-color: #764ba2;
-        }
-
-        .client-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1rem;
+        .hero-content {
             position: relative;
             z-index: 2;
         }
 
-        .client-name {
-            font-size: 1.3rem;
-            font-weight: bold;
-            color: #333;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .delete-btn {
-            background: #ff6b6b;
-            color: white;
-            border: none;
+        .profile-img {
+            width: 300px;
+            height: 300px;
             border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
+            object-fit: cover;
+            border: 5px solid #667eea;
+            box-shadow: 0 0 50px rgba(102, 126, 234, 0.5);
+            animation: float 3s ease-in-out infinite;
         }
 
-        .delete-btn:hover {
-            transform: scale(1.1);
-            box-shadow: 0 5px 15px rgba(255,107,107,0.3);
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
         }
 
-        .client-details {
-            position: relative;
-            z-index: 2;
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #fff 0%, #667eea 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .client-details p {
-            margin-bottom: 0.5rem;
-            color: #555;
-            font-size: 1rem;
+        .hero-subtitle {
+            font-size: 1.8rem;
+            color: #cbd5e1;
+            margin-bottom: 1.5rem;
         }
 
-        .client-details strong {
-            color: #333;
-        }
-
-        .stats-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
+        .hero-desc {
+            font-size: 1.1rem;
+            color: #94a3b8;
+            line-height: 1.8;
             margin-bottom: 2rem;
         }
 
-        .stat-card {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 1.5rem;
-            border-radius: 15px;
-            text-align: center;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            border: 1px solid rgba(255,255,255,0.2);
-            transition: all 0.3s ease;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-        }
-
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: bold;
-            color: #667eea;
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-label {
-            color: #666;
-            font-size: 1rem;
-        }
-
-        /* Login Modal */
-        .login-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.8);
-            z-index: 2000;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .login-form {
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            text-align: center;
-            min-width: 300px;
-            animation: slideIn 0.3s ease-out;
-        }
-
-        @keyframes slideIn {
-            from { transform: translateY(-50px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-
-        .login-form h2 {
-            margin-bottom: 1.5rem;
-            color: #333;
-        }
-
-        .login-form input {
-            width: 100%;
-            padding: 1rem;
-            margin-bottom: 1rem;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            font-size: 1rem;
-        }
-
-        .login-btn {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 1rem 2rem;
-            border: none;
+        .btn-primary-custom {
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            font-weight: 600;
             border-radius: 50px;
-            font-size: 1rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            width: 100%;
-        }
-
-        .close-btn {
-            position: absolute;
-            top: 10px;
-            right: 15px;
-            font-size: 2rem;
-            cursor: pointer;
-            color: #666;
-        }
-
-        /* Footer */
-        footer {
-            background: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
             color: white;
-            text-align: center;
-            padding: 2rem 0;
+            transition: all 0.3s;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+            margin: 10px;
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
+        .btn-primary-custom:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.6);
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+            padding-bottom: 20px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 2px;
+        }
+
+        /* Skills */
+        .skill-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            padding: 40px 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(102, 126, 234, 0.2);
+            transition: all 0.3s;
+            text-align: center;
+            height: 100%;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.3);
+            border-color: #667eea;
+            background: rgba(102, 126, 234, 0.1);
+        }
+
+        .skill-icon {
+            font-size: 4rem;
+            color: #667eea;
+            margin-bottom: 20px;
+        }
+
+        .skill-card:hover .skill-icon {
+            animation: rotate 0.5s ease;
+        }
+
+        @keyframes rotate {
+            0% {
+                transform: rotateY(0deg);
             }
-            
-            .hero-content h1 {
+
+            100% {
+                transform: rotateY(360deg);
+            }
+        }
+
+        .skill-name {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .skill-progress {
+            width: 100%;
+            height: 8px;
+            background: rgba(102, 126, 234, 0.2);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 15px;
+        }
+
+        .skill-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            border-radius: 10px;
+            transition: width 1s ease;
+        }
+
+        /* Certificates */
+        .cert-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(102, 126, 234, 0.2);
+            transition: all 0.3s;
+            height: 100%;
+        }
+
+        .cert-card:hover {
+            transform: translateY(-10px) rotate(2deg);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.4);
+        }
+
+        .cert-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 40px;
+            text-align: center;
+        }
+
+        .cert-icon {
+            font-size: 4rem;
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        .cert-body {
+            padding: 30px;
+        }
+
+        .cert-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding: 50px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .timeline-content {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 20px;
+            width: 45%;
+            border: 1px solid rgba(102, 126, 234, 0.2);
+            transition: all 0.3s;
+        }
+
+        .timeline-content:hover {
+            transform: scale(1.05);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.3);
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-left: 55%;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            margin-right: 55%;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            top: 30px;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            background: #667eea;
+            border-radius: 50%;
+            border: 4px solid #0a0a0a;
+            z-index: 1;
+            box-shadow: 0 0 20px rgba(102, 126, 234, 0.6);
+        }
+
+        /* Contact */
+        .contact-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(102, 126, 234, 0.2);
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-10px);
+            border-color: #667eea;
+        }
+
+        .contact-icon {
+            font-size: 3rem;
+            color: #667eea;
+            margin-bottom: 20px;
+        }
+
+        .social-links a {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            border-radius: 50%;
+            background: rgba(102, 126, 234, 0.2);
+            color: #667eea;
+            margin: 10px;
+            font-size: 1.5rem;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-5px) rotate(360deg);
+        }
+
+        /* Admin Button */
+        .admin-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.5);
+            cursor: pointer;
+            transition: all 0.3s;
+            z-index: 999;
+        }
+
+        .admin-btn:hover {
+            transform: scale(1.1) rotate(90deg);
+        }
+
+        /* Modal */
+        .modal-content {
+            background: #1a1a1a;
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            border-radius: 20px;
+        }
+
+        .modal-header {
+            border-bottom: 1px solid rgba(102, 126, 234, 0.3);
+        }
+
+        .modal-title {
+            color: #fff;
+        }
+
+        .btn-close {
+            filter: invert(1);
+        }
+
+        .form-control {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            color: white;
+            border-radius: 10px;
+            padding: 12px;
+        }
+
+        .form-control:focus {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: #667eea;
+            color: white;
+            box-shadow: 0 0 0 0.25rem rgba(102, 126, 234, 0.25);
+        }
+
+        .form-label {
+            color: #cbd5e1;
+        }
+
+        .nav-tabs .nav-link {
+            color: #94a3b8;
+            border: none;
+            background: transparent;
+        }
+
+        .nav-tabs .nav-link.active {
+            color: #667eea;
+            background: rgba(102, 126, 234, 0.1);
+            border-bottom: 2px solid #667eea;
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
                 font-size: 2.5rem;
             }
-            
-            .contact-container {
-                grid-template-columns: 1fr;
+
+            .profile-img {
+                width: 200px;
+                height: 200px;
+                margin-bottom: 30px;
+            }
+
+            .timeline::before {
+                left: 30px;
+            }
+
+            .timeline-content {
+                width: calc(100% - 80px) !important;
+                margin-left: 80px !important;
+            }
+
+            .timeline-dot {
+                left: 30px;
+            }
+
+            .section-title {
+                font-size: 2rem;
             }
         }
     </style>
 </head>
+
 <body>
-    <!-- Header -->
-    <header>
-        <nav>
-            <a href="#" class="logo">🏥 MedCare</a>
-            <ul class="nav-links">
-                <li><a href="#home">Bosh sahifa</a></li>
-                <li><a href="#services">Xizmatlar</a></li>
-                <li><a href="#contact">Bog'lanish</a></li>
-                <li><a href="#" id="adminBtn">Admin Panel</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <!-- Main Content -->
-    <main id="mainContent">
-        <!-- Hero Section -->
-        <section id="home" class="hero">
-            <div class="hero-content">
-                <h1>Sog'ligingiz - Bizning Ustuvor Vazifamiz</h1>
-                <p>Zamonaviy tibbiyot xizmatlari va professional shifokorlar bilan</p>
-                <a href="#services" class="cta-button">Xizmatlarimiz bilan tanishing</a>
-            </div>
-        </section>
-
-        <!-- Services Section -->
-        <section id="services" class="services">
-            <h2 class="section-title">Bizning Xizmatlarimiz</h2>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">🩺</div>
-                    <h3>Umumiy Tibbiyot</h3>
-                    <p>Malakali shifokorlar tomonidan to'liq tibbiy ko'rik va davolash</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">🦷</div>
-                    <h3>Stomatologiya</h3>
-                    <p>Zamonaviy uskunalar bilan tishlaringizni davolash va parvarish qilish</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">👁️</div>
-                    <h3>Oftalmologiya</h3>
-                    <p>Ko'z kasalliklarini tashxislash va davolash</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">🩻</div>
-                    <h3>Diagnostika</h3>
-                    <p>Zamonaviy diagnostika usullari bilan aniq tashxis</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">💊</div>
-                    <h3>Farmatsiya</h3>
-                    <p>Sifatli dorilar va malakali maslahatlar</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">🏥</div>
-                    <h3>Statsionar</h3>
-                    <p>Qulay palatalar va doimiy tibbiy nazorat</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact" class="contact">
-            <div class="contact-container">
-                <div class="contact-form">
-                    <h2>Bog'laning</h2>
-                    <form id="contactForm">
-                        <div class="form-group">
-                            <label for="name">Ismingiz:</label>
-                            <input type="text" id="name" name="name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">Telefon:</label>
-                            <input type="tel" id="phone" name="phone" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email:</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Xabar:</label>
-                            <textarea id="message" name="message" rows="5" required></textarea>
-                        </div>
-                        <button type="submit" class="submit-btn">Yuborish</button>
-                    </form>
-                </div>
-                <div class="map-container">
-                    <h2>Bizning Manzilimiz</h2>
-                    <div id="map"></div>
-                    <p style="margin-top: 1rem; text-align: center;">
-                        📍 Toshkent, Amir Temur ko'chasi, 25-uy<br>
-                        📞 +998 90 123 45 67<br>
-                        ✉️ info@medcare.uz
-                    </p>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Admin Panel -->
-    <div id="adminPanel" class="admin-panel">
-        <div class="admin-content">
-            <div class="admin-header">
-                <h1>🔐 Admin Panel</h1>
-                <p>Mijozlar ma'lumotlari va sayt boshqaruvi</p>
-                <div class="admin-nav">
-                    <a href="#" onclick="showMainContent()" class="admin-nav-btn">🏠 Bosh sahifa</a>
-                    <a href="#" onclick="showServices()" class="admin-nav-btn">🩺 Xizmatlar</a>
-                    <a href="#" onclick="showContact()" class="admin-nav-btn">📞 Bog'lanish</a>
-                </div>
-                <div class="admin-actions">
-                    <button onclick="clearAllClients()" class="clear-all-btn">🗑️ Hammasini tozalash</button>
-                    <button onclick="logoutAdmin()" class="logout-btn">🚪 Chiqish</button>
-                </div>
-            </div>
-            
-            <div class="stats-container">
-                <div class="stat-card">
-                    <div class="stat-number" id="totalClients">0</div>
-                    <div class="stat-label">Jami mijozlar</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number" id="todayClients">0</div>
-                    <div class="stat-label">Bugungi mijozlar</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number" id="weekClients">0</div>
-                    <div class="stat-label">Haftalik mijozlar</div>
-                </div>
-            </div>
-            
-            <div class="client-list">
-                <h2>📋 Mijozlar Ro'yxati</h2>
-                <div id="clientsList"></div>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#home">Portfolio</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="#home">Bosh sahifa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#skills">Ko'nikmalar</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#certificates">Sertifikatlar</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#experience">Tajriba</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Aloqa</a></li>
+                </ul>
             </div>
         </div>
-    </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 hero-content">
+                    <h1 class="hero-title">Frontend Developer</h1>
+                    <p class="hero-subtitle">Kreativ & Zamonaviy Yechimlar</p>
+                    <p class="hero-desc">
+                        HTML, CSS, JavaScript, React va Bootstrap texnologiyalarida professional dasturchi.
+                        2 yillik tajriba va 3ta sertifikat bilan zamonaviy web-saytlar yarataman.
+                    </p>
+                    <div>
+                        <a href="#contact" class="btn-primary-custom">Bog'lanish</a>
+                        <a href="#skills" class="btn-primary-custom">Ko'proq</a>
+                    </div>
+                </div>
+                <div class="col-lg-6 text-center">
+                    <img src="lc200.jpg" alt="Profile" class="profile-img">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section">
+        <div class="container">
+            <h2 class="section-title">Ko'nikmalarim</h2>
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <div class="skill-card">
+                        <i class="fab fa-html5 skill-icon"></i>
+                        <h3 class="skill-name">HTML5</h3>
+                        <p>Semantic va zamonaviy HTML strukturalar</p>
+                        <div class="skill-progress">
+                            <div class="skill-bar" style="width: 95%"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="skill-card">
+                        <i class="fab fa-css3-alt skill-icon"></i>
+                        <h3 class="skill-name">CSS3</h3>
+                        <p>Responsive dizayn va animatsiyalar</p>
+                        <div class="skill-progress">
+                            <div class="skill-bar" style="width: 90%"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="skill-card">
+                        <i class="fab fa-js skill-icon"></i>
+                        <h3 class="skill-name">JavaScript</h3>
+                        <p>ES6+ va DOM manipulation</p>
+                        <div class="skill-progress">
+                            <div class="skill-bar" style="width: 85%"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="skill-card">
+                        <i class="fab fa-react skill-icon"></i>
+                        <h3 class="skill-name">React</h3>
+                        <p>Component-based architecture</p>
+                        <div class="skill-progress">
+                            <div class="skill-bar" style="width: 80%"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="skill-card">
+                        <i class="fab fa-bootstrap skill-icon"></i>
+                        <h3 class="skill-name">Bootstrap</h3>
+                        <p>Responsive va tez rivojlantirish</p>
+                        <div class="skill-progress">
+                            <div class="skill-bar" style="width: 88%"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="skill-card">
+                        <i class="fas fa-code skill-icon"></i>
+                        <h3 class="skill-name">Web Development</h3>
+                        <p>Full frontend stack</p>
+                        <div class="skill-progress">
+                            <div class="skill-bar" style="width: 87%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certificates Section -->
+    <section id="certificates" class="section" style="background: rgba(102, 126, 234, 0.03);">
+        <div class="container">
+            <h2 class="section-title">Sertifikatlarim</h2>
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <div class="cert-card">
+                        <div class="cert-header">
+                            <i class="fas fa-certificate cert-icon"></i>
+                            <h4 style="color: white; margin: 0;">Web Development</h4>
+                        </div>
+                        <div class="cert-body">
+                            <h3 class="cert-title">Frontend Development</h3>
+                            <p class="text-muted">HTML, CSS, JavaScript asoslari</p>
+                            <p><i class="fas fa-calendar-alt" style="color: #667eea;"></i> 2023</p>
+                            <div class="mt-3">
+                                <span class="badge" style="background: #667eea;">HTML</span>
+                                <span class="badge" style="background: #667eea;">CSS</span>
+                                <span class="badge" style="background: #667eea;">JS</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="cert-card">
+                        <div class="cert-header">
+                            <i class="fas fa-award cert-icon"></i>
+                            <h4 style="color: white; margin: 0;">React Developer</h4>
+                        </div>
+                        <div class="cert-body">
+                            <h3 class="cert-title">React.js Mastery</h3>
+                            <p class="text-muted">Modern React va Hooks</p>
+                            <p><i class="fas fa-calendar-alt" style="color: #667eea;"></i> 2024</p>
+                            <div class="mt-3">
+                                <span class="badge" style="background: #667eea;">React</span>
+                                <span class="badge" style="background: #667eea;">Hooks</span>
+                                <span class="badge" style="background: #667eea;">Redux</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="cert-card">
+                        <div class="cert-header">
+                            <i class="fas fa-trophy cert-icon"></i>
+                            <h4 style="color: white; margin: 0;">UI/UX Design</h4>
+                        </div>
+                        <div class="cert-body">
+                            <h3 class="cert-title">Responsive Design</h3>
+                            <p class="text-muted">Bootstrap va CSS Frameworks</p>
+                            <p><i class="fas fa-calendar-alt" style="color: #667eea;"></i> 2024</p>
+                            <div class="mt-3">
+                                <span class="badge" style="background: #667eea;">Bootstrap</span>
+                                <span class="badge" style="background: #667eea;">Responsive</span>
+                                <span class="badge" style="background: #667eea;">UI/UX</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="section">
+        <div class="container">
+            <h2 class="section-title">Ish Tajribasi</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3 style="color: #667eea;">2024 - Hozir</h3>
+                        <h4>Frontend Developer</h4>
+                        <p class="text-muted mb-2">IT Company</p>
+                        <p>React.js va modern JavaScript texnologiyalari yordamida zamonaviy web ilovalar yaratish.
+                            Bootstrap va responsive dizayn prinsiplarini qo'llash.</p>
+                        <div class="mt-3">
+                            <span class="badge" style="background: #667eea;">React</span>
+                            <span class="badge" style="background: #667eea;">JavaScript</span>
+                            <span class="badge" style="background: #667eea;">Bootstrap</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3 style="color: #667eea;">2023 - 2024</h3>
+                        <h4>Junior Frontend Developer</h4>
+                        <p class="text-muted mb-2">Web Studio</p>
+                        <p>HTML, CSS va JavaScript yordamida landing page va corporate saytlar yaratish. Client bilan
+                            ishlash va responsive dizayn tajribasi.</p>
+                        <div class="mt-3">
+                            <span class="badge" style="background: #667eea;">HTML/CSS</span>
+                            <span class="badge" style="background: #667eea;">JavaScript</span>
+                            <span class="badge" style="background: #667eea;">UI Design</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section" style="background: rgba(102, 126, 234, 0.03);">
+        <div class="container">
+            <h2 class="section-title">Bog'lanish</h2>
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <div class="contact-card">
+                        <i class="fas fa-envelope contact-icon"></i>
+                        <h4>Email</h4>
+                        <p class="text-muted">Abdalovabdurashid732@gmail.com</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="contact-card">
+                        <i class="fas fa-phone contact-icon"></i>
+                        <h4>Telefon</h4>
+                        <p class="text-muted">+998 91-995-19-10</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="contact-card">
+                        <i class="fas fa-map-marker-alt contact-icon"></i>
+                        <h4>Manzil</h4>
+                        <p class="text-muted">Xiva Shahar, O'zbekiston</p>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-5">
+                <h3 class="mb-4">Ijtimoiy tarmoqlar</h3>
+                <div class="social-links">
+                    <a href="https://github.com/Aabdurashid885" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="https://t.me/storise_khiva" target="_blank"><i class="fab fa-telegram"></i></a>
+                    <a href="https://instagram.com/abico_bro" target="_blank"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Admin Button -->
+    <button class="admin-btn" data-bs-toggle="modal" data-bs-target="#loginModal">
+        <i class="fas fa-cog"></i>
+    </button>
 
     <!-- Login Modal -->
-    <div id="loginModal" class="login-modal">
-        <div class="login-form">
-            <span class="close-btn" onclick="closeLoginModal()">&times;</span>
-            <h2>Admin Kirish</h2>
-            <input type="password" id="adminPassword" placeholder="Parolni kiriting">
-            <button onclick="loginAdmin()" class="login-btn">Kirish</button>
+    <div class="modal fade" id="loginModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Admin Panel</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label">Parol</label>
+                        <input type="password" class="form-control" id="adminPassword" placeholder="Parolni kiriting">
+                    </div>
+                    <div id="loginError" class="text-danger"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary-custom w-100" onclick="checkPassword()">Kirish</button>
+                </div>
+            </div>
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2025 MedCare. Barcha huquqlar himoyalangan.</p>
-    </footer>
-
-    <script>
-        // Client data storage
-        let clients = [];
-
-        // Admin credentials
-        const ADMIN_PASSWORD = '885';
-
-        // Initialize map
-        function initMap() {
-            const tashkent = { lat: 41.2995, lng: 69.2401 };
-            const map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 15,
-                center: tashkent,
-                styles: [
-                    {
-                        "featureType": "all",
-                        "elementType": "geometry.fill",
-                        "stylers": [{"weight": "2.00"}]
-                    },
-                    {
-                        "featureType": "all",
-                        "elementType": "geometry.stroke",
-                        "stylers": [{"color": "#9c9c9c"}]
-                    }
-                ]
-            });
-
-            const marker = new google.maps.Marker({
-                position: tashkent,
-                map: map,
-                title: 'MedCare Klinikasi',
-                animation: google.maps.Animation.BOUNCE
-            });
-
-            const infoWindow = new google.maps.InfoWindow({
-                content: '<div style="padding: 10px;"><h3>MedCare Klinikasi</h3><p>Toshkent, Amir Temur ko\'chasi, 25-uy</p><p>📞 +998 90 123 45 67</p></div>'
-            });
-
-            marker.addListener('click', () => {
-                infoWindow.open(map, marker);
-            });
-        }
-
-        // Contact form submission
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const formData = {
-                name: document.getElementById('name').value,
-                phone: document.getElementById('phone').value,
-                email: document.getElementById('email').value,
-                message: document.getElementById('message').value,
-                timestamp: new Date().toLocaleString('uz-UZ')
-            };
-
-            clients.push(formData);
-            
-            // Show success message
-            alert('Xabaringiz muvaffaqiyatli yuborildi! Tez orada siz bilan bog\'lanamiz.');
-            
-            // Reset form
-            this.reset();
-            
-            console.log('New client added:', formData);
-        });
-
-        // Admin functions
-        function openLoginModal() {
-            document.getElementById('loginModal').style.display = 'flex';
-        }
-
-        function closeLoginModal() {
-            document.getElementById('loginModal').style.display = 'none';
-            document.getElementById('adminPassword').value = '';
-        }
-
-        function loginAdmin() {
-            const password = document.getElementById('adminPassword').value;
-            if (password === ADMIN_PASSWORD) {
-                document.getElementById('mainContent').style.display = 'none';
-                document.getElementById('adminPanel').style.display = 'block';
-                closeLoginModal();
-                displayClients();
-                updateStats();
-            } else {
-                alert('Noto\'g\'ri parol!');
-            }
-        }
-
-        function logoutAdmin() {
-            document.getElementById('adminPanel').style.display = 'none';
-            document.getElementById('mainContent').style.display = 'block';
-        }
-
-        function showMainContent() {
-            document.getElementById('adminPanel').style.display = 'none';
-            document.getElementById('mainContent').style.display = 'block';
-            document.getElementById('home').scrollIntoView({ behavior: 'smooth' });
-        }
-
-        function showServices() {
-            document.getElementById('adminPanel').style.display = 'none';
-            document.getElementById('mainContent').style.display = 'block';
-            document.getElementById('services').scrollIntoView({ behavior: 'smooth' });
-        }
-
-        function showContact() {
-            document.getElementById('adminPanel').style.display = 'none';
-            document.getElementById('mainContent').style.display = 'block';
-            document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
-        }
-
-        function deleteClient(index) {
-            if (confirm('Haqiqatan ham bu mijoz ma\'lumotini o\'chirmoqchimisiz?')) {
-                clients.splice(index, 1);
-                displayClients();
-                updateStats();
-            }
-        }
-
-        function clearAllClients() {
-            if (confirm('Haqiqatan ham barcha mijozlar ma\'lumotini o\'chirmoqchimisiz?')) {
-                clients = [];
-                displayClients();
-                updateStats();
-            }
-        }
-
-        function updateStats() {
-            const today = new Date().toLocaleDateString('uz-UZ');
-            const weekAgo = new Date();
-            weekAgo.setDate(weekAgo.getDate() - 7);
-            
-            const todayClients = clients.filter(client => {
-                const clientDate = new Date(client.timestamp.split(',')[0]);
-                return clientDate.toLocaleDateString('uz-UZ') === today;
-            }).length;
-            
-            const weekClients = clients.filter(client => {
-                const clientDate = new Date(client.timestamp.split(',')[0]);
-                return clientDate >= weekAgo;
-            }).length;
-            
-            document.getElementById('totalClients').textContent = clients.length;
-            document.getElementById('todayClients').textContent = todayClients;
-            document.getElementById('weekClients').textContent = weekClients;
-        }
-
-        function displayClients() {
-            const clientsList = document.getElementById('clientsList');
-            
-            if (clients.length === 0) {
-                clientsList.innerHTML = '<div style="text-align: center; padding: 3rem; color: #666; font-size: 1.2rem;">📭 Hozircha mijozlar ma\'lumotlari yo\'q</div>';
-                return;
-            }
-
-            clientsList.innerHTML = clients.map((client, index) => `
-                <div class="client-item">
-                    <div class="client-header">
-                        <div class="client-name">
-                            👤 ${client.name}
-                        </div>
-                        <button class="delete-btn" onclick="deleteClient(${index})" title="O'chirish">
-                            🗑️
-                        </button>
-                    </div>
-                    <div class="client-details">
-                        <p><strong>📞 Telefon:</strong> ${client.phone}</p>
-                        <p><strong>✉️ Email:</strong> ${client.email}</p>
-                        <p><strong>💬 Xabar:</strong> ${client.message}</p>
-                        <p><strong>🕐 Sana:</strong> ${client.timestamp}</p>
-                    </div>
+    <!-- Admin Panel Modal -->
+    <div class="modal fade" id="adminPanel" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Admin Panel</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
-            `).join('');
-        }
-
-        // Event listeners
-        document.getElementById('adminBtn').addEventListener('click', function(e) {
-            e.preventDefault();
-            openLoginModal();
-        });
-
-        // Smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-
-        // Service cards hover effects
-        document.querySelectorAll('.service-card').forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
-                this.style.color = 'white';
-            });
-            
-            card.addEventListener('mouseleave', function() {
-                this.style.background = 'white';
-                this.style.color = '#333';
-            });
-        });
-
-        // Header background change on scroll
-        window.addEventListener('scroll', function() {
-            const header = document.querySelector('header');
-            if (window.scrollY > 100) {
-                header.style.background = 'rgba(102, 126, 234, 0.95)';
-                header.style.backdropFilter = 'blur(10px)';
-            } else {
-                header.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
-                header.style.backdropFilter = 'none';
-            }
-        });
-
-        // Initialize Google Maps when page loads
-        window.onload = function() {
-            if (typeof google !== 'undefined') {
-                initMap();
-            }
-        };
-    </script>
-
-    <!-- Google Maps API -->
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"></script>
-</body>
-</html>
+                <div class="modal-body">
+                    <ul class="nav nav-tabs mb-4">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-bs-toggle="tab" href="#infoTab">Ma'lumotlar</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="#skillsTab">Ko'nikmalar</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="#certsTab">Sertifikatlar</a>
